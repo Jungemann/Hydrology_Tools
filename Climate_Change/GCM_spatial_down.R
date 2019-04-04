@@ -6,11 +6,11 @@
 
 GCM_spatial_down <- function(input, lon.reg, lat.reg, coord, year.ini){
 
-	# input	   : Input array [lon x lat x day x year x model]
-	# lon.reg  : Vector of longitudes of the study area
-	# lat.reg  : Vector of latitudes of the study area
-	# coord    : Vector with station coordinates [lon, lat]
-	# year.ini : Initial year to compute leap years
+  # input    : Input array [lon x lat x day x year x model]
+  # lon.reg  : Vector of longitudes of the study area
+  # lat.reg  : Vector of latitudes of the study area
+  # coord    : Vector with station coordinates [lon, lat]
+  # year.ini : Initial year to compute leap years
 
 
   # Create an empty matrix to store data [day x year x model]
