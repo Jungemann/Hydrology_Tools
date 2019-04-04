@@ -1,18 +1,19 @@
 ##############################################################################
 # Title   : convert_d2m.R
-# Purpose : Convert daily monthly data (Q, Temp, Rainfall)
+# Purpose : Convert daily to monthly data (Q, T, P)
 # Author  : Harold Llauca
 ##############################################################################
 
-convert_d2m <- function(data, ini, end, tolerance, FUN){
+convert_d2m <- function(data, ini, end, tolerance, FUN='sum'){
   
-  # data: Vector or matrix with data to process
+  # data: Vector or matrix data to process
   # ini : Initial date (dd/mm/yyyy) for processing data 
   # end : Final date (dd/mm/yyyy) for processing data
-  # tolerance : Maximum numbers of NAs accepted to obtain monthly data
-  # FUN : Write 'sum' in case of rainfall data and 'mean' dor streamflow and temperature data
+  # tolerance : Maximum numbers of NAs accepted to calculate monthly data
+  # FUN : Write 'sum' in case of rainfall data and 'mean' dor streamflow and temperature data. ('sum' as default)
   
-  # Read data
+  
+  # Auxiliary variables
   date.ini <- as.Date(ini, format='%d/%m/%Y')
   date.end <- as.Date(end, format='%d/%m/%Y')
   date.num <- as.numeric(date.ini)
@@ -23,13 +24,16 @@ convert_d2m <- function(data, ini, end, tolerance, FUN){
   if (is.null(ncol(data)) == TRUE){
     data <- matrix(data, ncol=1, nrow=length(data))
   }
+  
   y <- matrix(NA, ncol=ncol(data), nrow=length(dates))
   
   
   for (u in 1:ncol(data)){
     
+	# Extract data for each station point
     x <- as.numeric(as.vector(data[,u]))
     
+	
     # Sum daily data
     if (FUN=='sum'){
       i=1
@@ -74,8 +78,14 @@ convert_d2m <- function(data, ini, end, tolerance, FUN){
       }
       ans <- data.frame(Fecha=dates, y)
     }
-  }
-  
+	
+	
+	# Error message 
+	if (FUN != 'sum'| FUN != 'mean'){
+		warning('ERROR: Enter a correct value for FUN')
+	}
+ }
+   
   # Output
   return(ans)
 }
