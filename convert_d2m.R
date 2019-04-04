@@ -1,19 +1,18 @@
 ##############################################################################
 # Title   : convert_d2m.R
-# Purpose : Mensualiza valores diarios de una variable (Q, T, P)
+# Purpose : Convert daily monthly data (Q, Temp, Rainfall)
 # Author  : Harold Llauca
 ##############################################################################
 
 convert_d2m <- function(data, ini, end, tolerance, FUN){
 
-
-  # data=df
-  # ini='01/01/1930'
-  # end='23/01/2018'
-  # tolerance=5
-  # FUN='mean'
-
-  # Datos de entrada
+# data: Vector or matrix with data to process
+# ini : Initial date (dd/mm/yyyy) for processing data 
+# end : Final date (dd/mm/yyyy) for processing data
+# tolerance : Maximum numbers of NAs accepted to obtain monthly data
+# FUN : Write 'sum' in case of rainfall data and 'mean' dor streamflow and temperature data
+  
+  # Read data
   date.ini <- as.Date(ini, format='%d/%m/%Y')
   date.end <- as.Date(end, format='%d/%m/%Y')
   date.num <- as.numeric(date.ini)
@@ -31,7 +30,7 @@ convert_d2m <- function(data, ini, end, tolerance, FUN){
     
     x <- as.numeric(as.vector(data[,u]))
 
-    # Acumular datos diarios
+    # Sum daily data
     if (FUN=='sum'){
       i=1
       for (m in months){
@@ -54,7 +53,7 @@ convert_d2m <- function(data, ini, end, tolerance, FUN){
     }
   
   
-    # Promediar valores diarios
+    # Mean daily data
     if (FUN=='mean'){
       i=1
       for (m in months){
@@ -77,6 +76,6 @@ convert_d2m <- function(data, ini, end, tolerance, FUN){
     }
   }
   
-  # Salida de la función
+  # Output
   return(ans)
 }
