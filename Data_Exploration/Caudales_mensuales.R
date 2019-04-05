@@ -6,7 +6,7 @@ rm(list=ls())
 cat('\f')
 
 
-# Enter variables
+# Enter input variables
 wd        <- 'D:/GR2M_PERU/Caudales'
 file.load <- 'Q_diario_titicaca.csv'
 file.save <- 'Q_mensual_titicaca.csv'
@@ -15,10 +15,10 @@ threshold <- 5
 
 # Read file with daily data
 setwd(wd)
-df.raw <- read.table(file.load, sep=',', header=F) # Leer tabla
+df.raw   <- read.table(file.load, sep=',', header=F)
 
 
-# Extract metadata
+# Extract metadata and data
 Metadata <- df.raw[1:5,]
 Qdaily   <- df.raw[-5:-1,]
 
