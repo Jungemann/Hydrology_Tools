@@ -6,9 +6,9 @@
 
 convert_d2m <- function(df, tolerance, FUN='sum'){
   
-  # data: Dataframe with data (time, station...)
+  # data      : Dataframe (dates, station...)
   # tolerance : Maximum numbers of NAs accepted to calculate monthly data
-  # FUN : Write 'sum' in case of rainfall data and 'mean' dor streamflow and temperature data. ('sum' as default)
+  # FUN       : Write 'sum' in case of rainfall data and 'mean' for streamflow and temperature. ('sum' as default)
   
 
   # Auxiliary variables
