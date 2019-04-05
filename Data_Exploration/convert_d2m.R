@@ -4,22 +4,22 @@
 # Author  : Harold Llauca
 ##############################################################################
 
-convert_d2m <- function(data, ini, end, tolerance, FUN='sum'){
+convert_d2m <- function(df, tolerance, FUN='sum'){
   
-  # data: Vector or matrix data to process
-  # ini : Initial date (dd/mm/yyyy) for processing data 
-  # end : Final date (dd/mm/yyyy) for processing data
+  # data: Dataframe with data (time, station...)
   # tolerance : Maximum numbers of NAs accepted to calculate monthly data
   # FUN : Write 'sum' in case of rainfall data and 'mean' dor streamflow and temperature data. ('sum' as default)
   
-  
+
   # Auxiliary variables
-  date.ini <- as.Date(ini, format='%d/%m/%Y')
-  date.end <- as.Date(end, format='%d/%m/%Y')
-  date.num <- as.numeric(date.ini)
-  dates    <- format(seq(date.ini, date.end, by='month'), '%b-%Y')
-  years    <- as.numeric(format(seq(date.ini, date.end, by='month'), '%Y'))
-  months   <- as.numeric(format(seq(date.ini, date.end, by='month'), '%m'))
+  time     <- as.Date(df[,1], format='%d/%m/%Y')
+  m.ini    <- time[1]
+  m.end    <- time[length(time)]
+  dates    <- format(seq(m.ini, m.end, by='month'), '%b-%Y')
+  date.num <- as.numeric(m.ini)
+  years    <- as.numeric(format(seq(m.ini, m.end, by='month'), '%Y'))
+  months   <- as.numeric(format(seq(m.ini, m.end, by='month'), '%m'))
+  data     <- df[,-1]
   
   if (is.null(ncol(data)) == TRUE){
     data <- matrix(data, ncol=1, nrow=length(data))
@@ -76,14 +76,8 @@ convert_d2m <- function(data, ini, end, tolerance, FUN='sum'){
         }
         i=i+1
       }
-      ans <- data.frame(Fecha=dates, y)
+      ans <- data.frame(dates, y)
     }
-	
-	
-	# Error message 
-	if (FUN != 'sum'| FUN != 'mean'){
-		warning('ERROR: Enter a correct value for FUN')
-	}
  }
    
   # Output
