@@ -6,16 +6,16 @@
 
 convert_d2m <- function(df, tolerance, FUN='sum'){
   
-  # data      : Dataframe (dates, station...)
+  # data: Dataframe with data (time, station...)
   # tolerance : Maximum numbers of NAs accepted to calculate monthly data
-  # FUN       : Write 'sum' in case of rainfall data and 'mean' for streamflow and temperature. ('sum' as default)
+  # FUN : Write 'sum' in case of rainfall data and 'mean' dor streamflow and temperature data. ('sum' as default)
   
 
   # Auxiliary variables
   time     <- as.Date(df[,1], format='%d/%m/%Y')
   m.ini    <- time[1]
   m.end    <- time[length(time)]
-  dates    <- format(seq(m.ini, m.end, by='month'), '%b-%Y')
+  dates    <- seq(m.ini, m.end, by='month')
   date.num <- as.numeric(m.ini)
   years    <- as.numeric(format(seq(m.ini, m.end, by='month'), '%Y'))
   months   <- as.numeric(format(seq(m.ini, m.end, by='month'), '%m'))
