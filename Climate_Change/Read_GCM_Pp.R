@@ -1,5 +1,5 @@
-# Este scprit post-procesa Modelos Globales de Clima (GCM) y extrae datos para puntos de interÈs
-# Creado por Harold Llauca
+# Este scprit lee los archivos netCDF de GCMs y extrae data para puntos de inter√©s
+# En caso de procesar datos de temperatura o caudal se debe cambiar FUN=mean en la funci√≥n aggregate
 
 	# Remover variables anteriores y limpiar consola
 	rm(list=ls())
@@ -25,7 +25,7 @@
 
 
 	
-	# Escalamiento a punto de estaciÛn
+	# Escalamiento a punto de estaci√≥n
 	#=================================
 	
 	# Cargar funcion
