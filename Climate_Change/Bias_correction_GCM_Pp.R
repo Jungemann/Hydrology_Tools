@@ -1,5 +1,6 @@
-# Este script correge el sesgo de los GCM seleccionados usando t閏nicas de Mapeo de Cuantiles
-# Creado por Harold Llauca
+# Este script correge el sesgo de los GCM seleccionados usando t茅cnicas de Mapeo de Cuantiles
+# en caso de procesar variables negativas, adicional la varible wetdays=FALSE en la funci贸n
+# fitQmap
 
 # Remover variables anteriores y limpiar consola
 rm(list=ls())
@@ -21,7 +22,7 @@ IniFut     <- '2026/01/01'
 EndFut     <- '2050/12/01'
 
 
-# Procesar datos para cada punto de estaci髇
+# Procesar datos para cada punto de estaci贸n
 #===========================================
 
 # Directorio de trabajo
@@ -37,7 +38,7 @@ n.est <- length(nom)
 nData <- length(seq(as.Date(IniHist), as.Date(EndHist), by='month'))
 
 
-# Procesar datos para cada punto de estaci髇
+# Procesar datos para cada punto de estaci贸n
 #===========================================
 for (i in 1:n.est){
 
@@ -47,14 +48,14 @@ for (i in 1:n.est){
   tiff(paste0('Pp_bias_',nom[i],'.tif'), units='px', res=200, height=550, width=1600)
   
   
-    # Parametros gr醘icos
+    # Parametros gr谩ficos
     par(mfrow=c(1,3))
     par(mar=c(3,3,2,2), oma=c(1,1,0,0))
     par(tcl=0.2)
     par(mgp=c(0,0.1,0))
     
     
-    # Crear matriz vac韆 para almacenar datos
+    # Crear matriz vac铆a para almacenar datos
     GCM.fut.corr <- matrix(NA, ncol=length(model), nrow=nData)
     
     
@@ -98,7 +99,7 @@ for (i in 1:n.est){
       abline(h=seq(Min, Max, Delta), col="gray50", lty="dotted", lwd=.5)
       abline(0,1)
       mtext(model[j], side=3, cex=0.6, font=2, line=0.05)
-      legend("topleft", inset=0.05, c('Con correci髇', 'Sin correci髇'), pch=c(20,3), cex=0.8, col=c('black','red'),
+      legend("topleft", inset=0.05, c('Con correci贸n', 'Sin correci贸n'), pch=c(20,3), cex=0.8, col=c('black','red'),
              horiz=F, x.intersp=1, y.intersp=1.5)
     
       if (j==length(model)){
