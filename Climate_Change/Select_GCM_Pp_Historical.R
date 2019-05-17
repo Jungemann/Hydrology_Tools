@@ -1,5 +1,6 @@
-# Este script procesa archivos netCDF de Modelos de Circulaci?n General (GCM)
-# Creado por Harold Llauca
+# Este script genera gr谩ficos comparrativos de variaci贸n estacional, regresi贸n lineal y distribuci贸n acumulada
+# para la precipitaci贸n mensual observada y extraida de GCMs 
+
 
   # Remover variables anteriores y limpiar consola
     rm(list=ls())
@@ -69,8 +70,8 @@
           abline(v=1:12, col="gray50", lty="dotted", lwd=.5)
           abline(h=seq(0,150,50), col="gray50", lty="dotted", lwd=.5)
         }
-        mtext('Precipitaci髇 [mm]', side=2, cex=0.8, line=2, outer=T)
-        mtext('A駉 hidrol骻ico', side=1, cex=0.8, line=0.2, outer=T)
+        mtext('Precipitaci贸n [mm]', side=2, cex=0.8, line=2, outer=T)
+        mtext('A帽o hidrol贸gico', side=1, cex=0.8, line=0.2, outer=T)
       
       # Crear leyenda
         par(xpd=NA)
@@ -82,7 +83,7 @@
   
     
   
-    # Figura: Correlacion lineal
+    # Figura: Regresi贸n lineal
     tiff(paste('Pp_regresion_',nom[i],'.tif', sep=''), units='px', res=200, height=1300, width=1250)
     
       # Parametros graficos
@@ -115,7 +116,7 @@
       
         # Crear leyenda
           par(xpd=NA)
-          legend(900, 160, c('Regresi髇 Lineal', 'L韓ea de identidad'), lty=c(2,1),lwd=c(1,1),
+          legend(900, 160, c('Regresi贸n Lineal', 'L铆nea de identidad'), lty=c(2,1),lwd=c(1,1),
                  cex=1, col=c('red','black'), horiz=F, x.intersp=1, y.intersp=1.5)
       
     dev.off()
@@ -148,7 +149,7 @@
     #     abline(v=seq(0,550,25), col="gray50", lty="dotted", lwd=.5)
     #   }
     #   mtext('Probabilidad de no excedencia', side=2, cex=0.8, line=2, outer=T)
-    #   mtext('Precipitaci髇 media mensual [mm]', side=1, cex=0.8, line=0.2, outer=T)
+    #   mtext('Precipitaci贸n media mensual [mm]', side=1, cex=0.8, line=0.2, outer=T)
     # 
     # # Crear leyenda
     #   par(xpd=NA)
