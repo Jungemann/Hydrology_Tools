@@ -1,4 +1,6 @@
-# Creado por Harold Llauca
+# Este script genera un gr谩fico de comparaci贸n de la variaci贸n estacional hist贸rica y futura para la
+# precipitaci贸n media mensual
+# Puede emplearse tambi茅n para graficar la variaci贸n estacional de la temperatura y caudales
 
 # Remover variables anteriores y limpiar consola
 rm(list=ls())
@@ -50,9 +52,9 @@ tiff('Pp_estacionalidad_futura_Arcata.tif', units='px', res=200, height=800, wid
     text(1:12, yprom+10, lab=yprom, cex=.6, col='red')
     # abline(v=1:12, col="gray50", lty="dotted", lwd=.5)
     # abline(h=seq(0,200,50), col="gray50", lty="dotted", lwd=.5)
-    mtext('A駉 hidrol骻ico', side=1, cex=.9, line=2)
+    mtext('A帽o hidrol贸gico', side=1, cex=.9, line=2)
     mtext('Pp media mensual [mm]', side=2, cex=.9, line=2)
-    legend("topright", inset=0.03, c('Hist髍ico (1981-2005)','Futuro (2026-2050)', 'Incertidumbre'), pch=c(15,NA,15),
+    legend("topright", inset=0.03, c('Hist贸rico (1981-2005)','Futuro (2026-2050)', 'Incertidumbre'), pch=c(15,NA,15),
            pt.cex=c(2,NA,2), pt.bg=c('black',NA, rgb(1,0,0,alpha=0.3)), lty=c(NA,1,NA), cex=0.6,
            col=c('gray40','red', rgb(1,0,0,alpha=0.3)), horiz=F, x.intersp=1, y.intersp=1.5)
     
